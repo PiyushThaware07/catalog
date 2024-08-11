@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Chart from './Chart';
 
-export default function Sample() {
+export default function Sample({value,setValue}) {
   return (
     <div>
       <Tabs defaultValue="chart" className="w-full">
@@ -15,8 +15,7 @@ export default function Sample() {
           <TabsTrigger className="rounded-none text-xs outline-none ring-offset-0 bg-transparent  data-[state=active]:font-semibold data-[state=active]:bg-transparent data-[state=active]:border-indigo-500 border-b-2 border-transparent  relative" value="setting">Settings</TabsTrigger>
         </TabsList>
         <TabsContent value="chart">
-          
-            <Chart />
+          <Chart value={value} setValue={setValue} />
         </TabsContent>
       </Tabs>
 

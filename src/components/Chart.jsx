@@ -12,20 +12,29 @@ import { data1d,data3d,data1w,data1m,data6m,dataMax } from '@/assets/data';
 
 
 const dataMap = {
-    '1d': data1d,
-    '3d': data3d,
-    '1w': data1w,
-    '1m': data1m,
-    '6m': data6m,
-    'max': dataMax,
+    '1d': data1d.data,
+    '3d': data3d.data,
+    '1w': data1w.data,
+    '1m': data1m.data,
+    '6m': data6m.data,
+    'max': dataMax.data,
+};
+const changeMap = {
+    '1d': data1d.change,
+    '3d': data3d.change,
+    '1w': data1w.change,
+    '1m': data1m.change,
+    '6m': data6m.change,
+    'max': dataMax.change,
 };
 
 export default class StockChart extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: data1w, // Default data
+            chartData: data1w.data, // Default data
             selectedPeriod: '1w', // Default period
+            value : data1w.change
         };
     }
 
@@ -33,9 +42,11 @@ export default class StockChart extends PureComponent {
         this.setState({
             chartData: dataMap[period],
             selectedPeriod: period,
+            value : changeMap[period]
         });
+        this.props.setValue(this.state.value);
     };
-
+    
     render() {
         const { chartData, selectedPeriod } = this.state;
 
